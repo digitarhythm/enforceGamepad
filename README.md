@@ -32,10 +32,10 @@ axes = pad.axes
 analog = pad.analog
 ```
 With "buttons", "axes" and "analog" you can get the state of the button, the state of the four-way key, and the state of the analog stick.  
-(In the XBOX 360 controller, the "RT" and "LT" buttons also return analog values)
+(In the XBOX360 controller, the "RT" and "LT" buttons also return analog values)
 
 ## Correspondence table
-The name of the key conforms to XBOX 360 controller.  
+The name of the key conforms to XBOX360 controller.  
   
 **Buttons**
 
@@ -60,6 +60,6 @@ In the case of a controller without the HOME button, pressing "BACK" and "START"
 The four-way controller has horizontal values for "axes[0]" and vertical values for "axes[1]".
 
 **Analog stick**  
-Likewise, the analog stick has the value of left stick in "analog[0]" and the value of right stick in "analog [1]".  
+Likewise, the analog stick has the value of left stick in "analog[0]" and the value of right stick in "analog[1]".  
 "analog[n]" contains an array of horizontal and vertical values.  
 It is in the horizontal direction to "analog[n][0]", the value in the vertical direction to "analog[n][1]" between 0~1.  
