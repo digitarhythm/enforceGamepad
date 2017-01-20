@@ -1,3 +1,10 @@
-#!/bin/sh
+#!/bin/bash
 
-coffee -w -b -c *.coffee
+ARG=$1
+if [ "$ARG" == "-w" ]; then
+    OPT="-w"
+else
+    OPT=""
+fi
+
+coffee $OPT -b -c *.coffee
