@@ -1,11 +1,8 @@
 # enforceGamepad
 JavaScript library for unified GamePadAPI.
 
-## Sample Build
+## Sample
 0. Clone to the "DocumentRoot" accessible from the Web.
-0. Execute the build command<br>
-CoffeeScript is compiled and a JavaScript file is generated.  
-The game pad library file is "enforceGamepad.js".
 0. Access the directory cloned by the browser.
 0. A list of values that can be acquired with this library is displayed on the screen.  
 (Please operate game pad in Firefox)
