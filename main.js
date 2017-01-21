@@ -9,17 +9,25 @@ proc = function(gamepad) {
   for (_i = 0, _len = _ref.length; _i < _len; _i++) {
     c = _ref[_i];
     if ((c != null)) {
-      str += "<font style='font-weight:bold; font-size:24pt;'>" + c.id + "</font><br><font style='font-weight:bold; font-size:14pt;'>";
+      str += "<font style='font-weight:bold; font-size:24pt;'>" + c.id + "</font><br>";
+      str += "Buttons<br>";
+      str += "<font style='font-weight:bold; font-size:14pt;'>";
       _ref1 = c.buttons;
       for (buttons in _ref1) {
         val = _ref1[buttons];
         str += buttons + "=[" + val + "]<br>";
       }
+      str += "</font>";
+      str += "Analog<br>";
+      str += "<font style='font-weight:bold; font-size:14pt;'>";
       _ref2 = c.analog;
       for (analog in _ref2) {
         val = _ref2[analog];
         str += analog + "=[" + val + "]<br>";
       }
+      str += "</font>";
+      str += "Axes<br>";
+      str += "<font style='font-weight:bold; font-size:14pt;'>";
       _ref3 = c.axes;
       for (axes in _ref3) {
         val = _ref3[axes];
