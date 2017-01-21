@@ -2,7 +2,7 @@
 var enforceGamepad;
 
 enforceGamepad = (function() {
-  var generic_controller, __browser, __padsmethod, __prepareflag_h, __prepareflag_v;
+  var __browser, __padsmethod, __prepareflag_h, __prepareflag_v;
 
   __padsmethod = [];
 
@@ -54,38 +54,31 @@ enforceGamepad = (function() {
     return this.controllers[gamepad.index] = void 0;
   };
 
-  enforceGamepad.prototype.__distinction = function(id) {
-    var match, product, vendor;
+  enforceGamepad.prototype.__setControllerBind = function(c) {
+    var match, method, product, vendor;
+    if (c == null) {
+      return;
+    }
     switch (__browser) {
       case "firefox":
-        match = id.match(/(.*?)-(.*?)-/);
+        match = c.id.match(/(.*?)-(.*?)-/);
         vendor = match[1];
         product = match[2];
         break;
       case "chrome":
-        match = id.match(/.*Vendor: 0*(.*?) Product: 0*(.*?)\)/);
+        match = c.id.match(/.*Vendor: 0*(.*?) Product: 0*(.*?)\)/);
         vendor = match[1];
         product = match[2];
         break;
       case "safari":
-        match = id.match(/(.*?)-(.*?)-/);
+        match = c.id.match(/(.*?)-(.*?)-/);
         vendor = match[1];
         product = match[2];
+        break;
+      default:
+        vendor = "unknown";
+        product = "unknown";
     }
-    return {
-      'vendor': vendor,
-      'product': product
-    };
-  };
-
-  enforceGamepad.prototype.__setControllerBind = function(c) {
-    var cont, method, product, vendor;
-    if (c == null) {
-      return;
-    }
-    cont = this.__distinction(c.id);
-    vendor = cont.vendor;
-    product = cont.product;
     method = __browser + "_" + vendor + "_" + product;
     if (typeof __padsmethod[method] === 'function') {
       return __padsmethod[method](c);
@@ -243,7 +236,7 @@ enforceGamepad = (function() {
   };
 
   __padsmethod.chrome_56e_2003 = function(c) {
-    var a, b, down, left, ret, right, up;
+    var a, a9, b, down, left, ret, right, up;
     ret = [];
     ret.id = c.id;
     ret.buttons = [];
@@ -264,22 +257,23 @@ enforceGamepad = (function() {
     ret.buttons[10] = b[8].value;
     ret.buttons[11] = b[9].value;
     ret.buttons[12] = b[12].value;
-    if (a[9].toFixed(1) === "0.7") {
+    a9 = a[9].toFixed(1);
+    if (a9 === "1.0" || a9 === "0.7" || a9 === "0.4") {
       left = 1;
     } else {
       left = 0;
     }
-    if (a[9].toFixed(1) === "-0.4") {
+    if (a9 === "-0.1" || a9 === "-0.4" || a9 === "-0.7") {
       right = 1;
     } else {
       right = 0;
     }
-    if (a[9].toFixed(1) === "-1.0") {
+    if (a9 === "1.0" || a9 === "-1.0" || a9 === "-0.7") {
       up = 1;
     } else {
       up = 0;
     }
-    if (a[9].toFixed(1) === "0.1") {
+    if (a9 === "-0.1" || a9 === "0.1" || a9 === "0.4") {
       down = 1;
     } else {
       down = 0;
@@ -292,7 +286,7 @@ enforceGamepad = (function() {
   };
 
   __padsmethod.safari_56e_2003 = function(c) {
-    var a, b, down, left, ret, right, up;
+    var a, b, ret;
     ret = [];
     ret.id = c.id;
     ret.buttons = [];
@@ -313,30 +307,10 @@ enforceGamepad = (function() {
     ret.buttons[10] = b[8].value;
     ret.buttons[11] = b[9].value;
     ret.buttons[12] = b[12].value;
-    if (a[9].toFixed(1) === "0.7") {
-      left = 1;
-    } else {
-      left = 0;
-    }
-    if (a[9].toFixed(1) === "-0.4") {
-      right = 1;
-    } else {
-      right = 0;
-    }
-    if (a[9].toFixed(1) === "-1.0") {
-      up = 1;
-    } else {
-      up = 0;
-    }
-    if (a[9].toFixed(1) === "0.1") {
-      down = 1;
-    } else {
-      down = 0;
-    }
-    ret.axes[0] = right - left;
-    ret.axes[1] = down - up;
+    ret.axes[0] = parseInt(a[0]);
+    ret.axes[1] = parseInt(a[1]);
     ret.analog[0] = [a[0].toFixed(2), a[1].toFixed(2)];
-    ret.analog[1] = [a[2].toFixed(2), a[5].toFixed(2)];
+    ret.analog[1] = [a[2].toFixed(2), a[3].toFixed(2)];
     return ret;
   };
 
@@ -528,7 +502,7 @@ enforceGamepad = (function() {
   };
 
   __padsmethod.chrome_1dd8_10 = function(c) {
-    var a, b, down, left, ret, right, up;
+    var a, a9, b, down, left, ret, right, up;
     ret = [];
     ret.id = c.id;
     ret.buttons = [];
@@ -561,22 +535,23 @@ enforceGamepad = (function() {
     } else {
       ret.buttons[12] = 0;
     }
-    if (a[9].toFixed(1) === "0.7") {
+    a9 = a[9].toFixed(1);
+    if (a9 === "0.4" || a9 === "0.7" || a9 === "1.0") {
       left = 1;
     } else {
       left = 0;
     }
-    if (a[9].toFixed(1) === "-0.4") {
+    if (a9 === "-0.1" || a9 === "-0.4" || a9 === "-0.7") {
       right = 1;
     } else {
       right = 0;
     }
-    if (a[9].toFixed(1) === "-1.0") {
+    if (a9 === "1.0" || a9 === "-1.0" || a9 === "-0.7") {
       up = 1;
     } else {
       up = 0;
     }
-    if (a[9].toFixed(1) === "0.1") {
+    if (a9 === "0.4" || a9 === "0.1" || a9 === "-0.1") {
       down = 1;
     } else {
       down = 0;
@@ -629,7 +604,7 @@ enforceGamepad = (function() {
     return ret;
   };
 
-  generic_controller = function(c) {
+  enforceGamepad.prototype.generic_controller = function(c) {
     var a, b, ret;
     ret = [];
     ret.id = c.id;

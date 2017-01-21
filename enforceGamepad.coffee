@@ -62,34 +62,31 @@ class enforceGamepad
         @controllers[gamepad.index] = undefined
 
     #============================================================================
-    # Distinction Gamepad
-    #============================================================================
-    __distinction:(id)->
-        switch (__browser)
-            when "firefox"
-                match = id.match(/(.*?)-(.*?)-/)
-                vendor = match[1]
-                product = match[2]
-            when "chrome"
-                match = id.match(/.*Vendor: 0*(.*?) Product: 0*(.*?)\)/)
-                vendor = match[1]
-                product = match[2]
-            when "safari"
-                match = id.match(/(.*?)-(.*?)-/)
-                vendor = match[1]
-                product = match[2]
-        return {'vendor':vendor, 'product':product}
-
-    #============================================================================
     # set controller value
     #============================================================================
     __setControllerBind:(c)->
         if (!c?)
             return
 
-        cont = @__distinction(c.id)
-        vendor = cont.vendor
-        product = cont.product
+        #============================================================================
+        # Distinction Gamepad
+        #============================================================================
+        switch (__browser)
+            when "firefox"
+                match = c.id.match(/(.*?)-(.*?)-/)
+                vendor = match[1]
+                product = match[2]
+            when "chrome"
+                match = c.id.match(/.*Vendor: 0*(.*?) Product: 0*(.*?)\)/)
+                vendor = match[1]
+                product = match[2]
+            when "safari"
+                match = c.id.match(/(.*?)-(.*?)-/)
+                vendor = match[1]
+                product = match[2]
+            else
+                vendor = "unknown"
+                product = "unknown"
 
         method = __browser+"_"+vendor+"_"+product
         if (typeof(__padsmethod[method]) == 'function')
@@ -104,7 +101,6 @@ class enforceGamepad
     #============================================================================
     #============================================================================
     #============================================================================
-
 
     #============================================================================
     # Browser    :Firefox
@@ -294,19 +290,20 @@ class enforceGamepad
         ret.buttons[10]      = b[ 8].value
         ret.buttons[11]      = b[ 9].value
         ret.buttons[12]      = b[12].value
-        if (a[9].toFixed(1) == "0.7")
+        a9 = a[9].toFixed(1)
+        if (a9 == "1.0" || a9 == "0.7" || a9 == "0.4")
             left = 1
         else
             left = 0
-        if (a[9].toFixed(1) == "-0.4")
+        if (a9 == "-0.1" || a9 == "-0.4" || a9 == "-0.7")
             right = 1
         else
             right = 0
-        if (a[9].toFixed(1) == "-1.0")
+        if (a9 == "1.0" || a9 == "-1.0" || a9 == "-0.7")
             up = 1
         else
             up = 0
-        if (a[9].toFixed(1) == "0.1")
+        if (a9 == "-0.1" || a9 == "0.1" || a9 == "0.4")
             down = 1
         else
             down = 0
@@ -344,26 +341,10 @@ class enforceGamepad
         ret.buttons[10]      = b[ 8].value
         ret.buttons[11]      = b[ 9].value
         ret.buttons[12]      = b[12].value
-        if (a[9].toFixed(1) == "0.7")
-            left = 1
-        else
-            left = 0
-        if (a[9].toFixed(1) == "-0.4")
-            right = 1
-        else
-            right = 0
-        if (a[9].toFixed(1) == "-1.0")
-            up = 1
-        else
-            up = 0
-        if (a[9].toFixed(1) == "0.1")
-            down = 1
-        else
-            down = 0
-        ret.axes[0]               = right - left
-        ret.axes[1]               = down - up
+        ret.axes[0]               = parseInt(a[0])
+        ret.axes[1]               = parseInt(a[1])
         ret.analog[0]             = [a[0].toFixed(2), a[1].toFixed(2)]
-        ret.analog[1]             = [a[2].toFixed(2), a[5].toFixed(2)]
+        ret.analog[1]             = [a[2].toFixed(2), a[3].toFixed(2)]
 
         return ret
 
@@ -594,19 +575,20 @@ class enforceGamepad
             ret.buttons[12]   = 1
         else
             ret.buttons[12]   = 0
-        if (a[9].toFixed(1) == "0.7")
+        a9 = a[9].toFixed(1)
+        if (a9 == "0.4" || a9 == "0.7" || a9 == "1.0")
             left = 1
         else
             left = 0
-        if (a[9].toFixed(1) == "-0.4")
+        if (a9 == "-0.1" || a9 == "-0.4" || a9 == "-0.7")
             right = 1
         else
             right = 0
-        if (a[9].toFixed(1) == "-1.0")
+        if (a9 == "1.0" || a9 == "-1.0" || a9 == "-0.7")
             up = 1
         else
             up = 0
-        if (a[9].toFixed(1) == "0.1")
+        if (a9 == "0.4" || a9 == "0.1" || a9 == "-0.1")
             down = 1
         else
             down = 0
@@ -664,7 +646,7 @@ class enforceGamepad
     # Browser    :All
     # Controller :Generic
     #============================================================================
-    generic_controller = (c)->
+    generic_controller:(c)->
         ret = []
         ret.id = c.id
         ret.buttons = []
