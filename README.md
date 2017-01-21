@@ -6,7 +6,8 @@ JavaScript library for unified GamePadAPI.
 0. Access the directory cloned by the browser.
 0. A list of values that can be acquired with this library is displayed on the screen.  
 (Please operate game pad in Firefox)
-
+  
+The class library is "enforceGamepad.js".
 ## Supported Browsers
 * Firefox
 * Chrome
