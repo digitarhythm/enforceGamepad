@@ -13,6 +13,16 @@ The class library is "enforceGamepad.js".
 * Chrome
 * Safari 10.2(in the future)
 
+## Supported Controller
+* Xbox 360 Wired Controller (STANDARD GAMEPAD Vendor: 045e Product: 028e)  
+Xbox360 Wired Controller
+* JC-U3613M - DirectInput Mode (Vendor: 056e Product: 2003)  
+ELECOM Gaming Controller
+* iBUFFALO BSGP1204P Series (Vendor: 1dd8 Product: 0010)  
+iBUFFALO Gaming Controller
+* 4Axes 12Key GamePad (Vendor: 0d9d Product: 3013)  
+PlayStation2 Controller
+
 ## How to use(CoffeeScript)
 ```
 gamepad = new enforceGamepad()
