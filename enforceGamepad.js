@@ -14,8 +14,7 @@ enforceGamepad = (function() {
   __prepareflag_v = void 0;
 
   function enforceGamepad() {
-    var _browser,
-      _this = this;
+    var _this = this;
     this.__controllerProcedureDefinition = function() {
       return enforceGamepad.prototype.__controllerProcedureDefinition.apply(_this, arguments);
     };
@@ -27,7 +26,7 @@ enforceGamepad = (function() {
     } else if (__ua.match(/.*chrome\/.* safari\/.*/)) {
       __browser = "chrome";
     } else {
-      _browser = "unknown";
+      __browser = "unknown";
     }
     this.controllers = [];
     window.addEventListener("gamepadconnected", function(e) {

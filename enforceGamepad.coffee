@@ -31,7 +31,7 @@ class enforceGamepad
         else if (__ua.match(/.*chrome\/.* safari\/.*/))
             __browser = "chrome"
         else
-            _browser = "unknown"
+            __browser = "unknown"
 
         # controller connection event
         @controllers = []
