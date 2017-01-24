@@ -12,6 +12,7 @@ class enforceGamepad
     # static value
     #============================================================================
     __browser = undefined
+    __ua = undefined
     __prepareflag_h = undefined
     __prepareflag_v = undefined
 
@@ -22,12 +23,12 @@ class enforceGamepad
     # Constructor
     constructor:->
         # get browser kind
-        _ua = window.navigator.userAgent.toLowerCase()
-        if (_ua.match(/.* firefox\/.*/))
+        __ua = window.navigator.userAgent.toLowerCase()
+        if (__ua.match(/.* firefox\/.*/))
             __browser = "firefox"
-        else if (_ua.match(/.*version\/.* safari\/.*/))
+        else if (__ua.match(/.*version\/.* safari\/.*/))
             __browser = "safari"
-        else if (_ua.match(/.*chrome\/.* safari\/.*/))
+        else if (__ua.match(/.*chrome\/.* safari\/.*/))
             __browser = "chrome"
         else
             _browser = "unknown"

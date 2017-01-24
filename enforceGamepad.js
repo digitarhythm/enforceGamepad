@@ -3,26 +3,28 @@ var enforceGamepad,
   _this = this;
 
 enforceGamepad = (function() {
-  var __browser, __prepareflag_h, __prepareflag_v;
+  var __browser, __prepareflag_h, __prepareflag_v, __ua;
 
   __browser = void 0;
+
+  __ua = void 0;
 
   __prepareflag_h = void 0;
 
   __prepareflag_v = void 0;
 
   function enforceGamepad() {
-    var _browser, _ua,
+    var _browser,
       _this = this;
     this.__controllerProcedureDefinition = function() {
       return enforceGamepad.prototype.__controllerProcedureDefinition.apply(_this, arguments);
     };
-    _ua = window.navigator.userAgent.toLowerCase();
-    if (_ua.match(/.* firefox\/.*/)) {
+    __ua = window.navigator.userAgent.toLowerCase();
+    if (__ua.match(/.* firefox\/.*/)) {
       __browser = "firefox";
-    } else if (_ua.match(/.*version\/.* safari\/.*/)) {
+    } else if (__ua.match(/.*version\/.* safari\/.*/)) {
       __browser = "safari";
-    } else if (_ua.match(/.*chrome\/.* safari\/.*/)) {
+    } else if (__ua.match(/.*chrome\/.* safari\/.*/)) {
       __browser = "chrome";
     } else {
       _browser = "unknown";
