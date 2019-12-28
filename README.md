@@ -1,4 +1,4 @@
-# enforceGamepad
+# enforceGamePad
 JavaScript library for unified GamePadAPI.
 
 ## Sample

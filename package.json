@@ -1,0 +1,25 @@
+{
+  "name": "enforcegamepad",
+  "version": "0.1.0",
+  "description": "JavaScript library for unified GamePadAPI.",
+  "main": "enforcegamepad.min.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/digitarhythm/enforceGamePad.git"
+  },
+  "keywords": [
+    "GamePadAPI"
+  ],
+  "author": "Hajime Oh-yake",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/digitarhythm/enforceGamePad/issues"
+  },
+  "homepage": "https://github.com/digitarhythm/enforceGamePad#readme",
+  "dependencies": {
+    "terffee": "^1.4.3"
+  }
+}

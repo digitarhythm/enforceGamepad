@@ -7,4 +7,4 @@ else
     OPT=""
 fi
 
-coffee $OPT -b -c *.coffee
+terffee $OPT -c *.coffee
