@@ -99,7 +99,11 @@ class enforcegamepad
     vendor = v
     product = p
 
+    #echo "vendor=%@, product=%@", vendor, product
+
     method = __browser+"_"+vendor+"_"+product
+    #echo "method=%@", method
+
     if (typeof(@__padsmethod[method]) == 'function')
       @__padsmethod[method](c)
     else
@@ -711,6 +715,41 @@ class enforcegamepad
       ret.buttons[12] = b[11].value
       ret.axes[0]     = parseInt(a[0])
       ret.axes[1]     = parseInt(a[1])
+      ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]   = [a[2].toFixed(2), a[3].toFixed(2)]
+
+      return ret
+
+    #============================================================================
+    # Browser  :Chrome
+    # Controller :8BitDo N30 Pro 2 (STANDARD GAMEPAD Vendor: 045e Product: 02e0)
+    #============================================================================
+    @__padsmethod.chrome_45e_2e0 = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+      btn = @__buttonLogicalc(8, 9, c)
+
+      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[1]  = b[ 0].value
+      ret.buttons[2]  = b[ 1].value
+      ret.buttons[3]  = b[ 2].value
+      ret.buttons[4]  = b[ 3].value
+      ret.buttons[5]  = b[ 4].value
+      ret.buttons[6]  = b[ 5].value
+      ret.buttons[7]  = b[ 6].value
+      ret.buttons[8]  = b[ 7].value
+      ret.buttons[9]  = btn[0]
+      ret.buttons[10] = btn[1]
+      ret.buttons[11] = b[10].value
+      ret.buttons[12] = b[11].value
+      ret.axes[0]     = b[14].value - b[15].value
+      ret.axes[1]     = b[12].value - b[13].value
       ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
       ret.analog[1]   = [a[2].toFixed(2), a[3].toFixed(2)]
 
