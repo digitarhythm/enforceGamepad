@@ -1,6 +1,6 @@
 {
   "name": "enforcegamepad",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "JavaScript library for unified GamePadAPI.",
   "main": "enforcegamepad.min.js",
   "scripts": {
