@@ -49,19 +49,19 @@ The name of the key conforms to XBOX360 controller.
 
 |Button name     |Array index number|Values                 |
 |:---------------|:-----------------|:---------------------:|
-|A               |0                 |0 or 1                 |
-|B               |1                 |0 or 1                 |
-|X               |2                 |0 or 1                 |
-|Y               |3                 |0 or 1                 |
-|LB              |4                 |0 or 1                 |
-|RB              |5                 |0 or 1                 |
-|LT              |6                 |0 or 1<br>(Xbox360:0~1)|
-|RT              |7                 |0 or 1<br>(Xbox360:0~1)|
-|BACK            |8                 |0 or 1                 |
-|START           |9                 |0 or 1                 |
-|Left stick push |10                |0 or 1                 |
-|Right stick push|11                |0 or 1                 |
-|HOME            |12                |0 or 1                 |
+|HOME            |0                 |0 or 1                 |
+|A               |1                 |0 or 1                 |
+|B               |2                 |0 or 1                 |
+|X               |3                 |0 or 1                 |
+|Y               |4                 |0 or 1                 |
+|LB              |5                 |0 or 1                 |
+|RB              |6                 |0 or 1                 |
+|LT              |7                 |0 or 1<br>(Xbox360:0~1)|
+|RT              |8                 |0 or 1<br>(Xbox360:0~1)|
+|BACK            |9                 |0 or 1                 |
+|START           |10                |0 or 1                 |
+|Left stick push |11                |0 or 1                 |
+|Right stick push|12                |0 or 1                 |
 In the case of a controller without the HOME button, pressing "BACK" and "START" at the same time means pressing the HOME button.
 
 **Axes**  
