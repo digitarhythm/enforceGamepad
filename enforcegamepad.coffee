@@ -75,26 +75,26 @@ class enforcegamepad
     #============================================================================
     # Distinction Gamepad
     #============================================================================
-    switch (__browser)
-      when "firefox"
-        match = c.id.match(/(.*?)-(.*?)-/)
-        v = match[1]
-        p = match[2]
-      when "chrome"
-        match = c.id.match(/.*Vendor: 0*(.*?) Product: 0*(.*?)\)/)
-        if (c.id.match(/.*XInput.*/))
-          v = "056e"
-          p = "2004"
-        else
-          v = match[1]
-          p = match[2]
-      when "safari"
-        match = c.id.match(/(.*?)-(.*?)-/)
-        v = match[1]
-        p = match[2]
-      else
-        v = "unknown"
-        p = "generic"
+    try
+      switch (__browser)
+          when "firefox"
+            match = c.id.match(/(.*?)-(.*?)-/)
+            v = match[1]
+            p = match[2]
+          when "chrome"
+            match = c.id.match(/.*Vendor: 0*(.*?) Product: 0*(.*?)\)/)
+            v = match[1]
+            p = match[2]
+          when "safari"
+            match = c.id.match(/(.*?)-(.*?)-/)
+            v = match[1]
+            p = match[2]
+          else
+            v = "unknown"
+            p = "generic"
+    catch e
+      v = "unknown"
+      p = "generic"
 
     vendor = v
     product = p
@@ -748,8 +748,8 @@ class enforcegamepad
       ret.buttons[10] = btn[1]
       ret.buttons[11] = b[10].value
       ret.buttons[12] = b[11].value
-      ret.axes[0]     = b[14].value - b[15].value
-      ret.axes[1]     = b[12].value - b[13].value
+      ret.axes[0]     = b[15].value - b[14].value
+      ret.axes[1]     = b[13].value - b[12].value
       ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
       ret.analog[1]   = [a[2].toFixed(2), a[3].toFixed(2)]
 
