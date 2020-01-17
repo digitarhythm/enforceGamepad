@@ -55,8 +55,6 @@ class enforcegamepad
   # Add Gamepad
   #============================================================================
   __addGamepad:(gamepad)->
-    #gamepad.axes[2] = undefined
-    #gamepad.axes[5] = undefined
     @controllers[gamepad.index] = @__setControllerBind(gamepad)
 
   #============================================================================
@@ -183,7 +181,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]  = b[10].value # Center Button
+      ret.buttons[0]  = b[10].value # Home Button
       ret.buttons[1]  = b[11].value
       ret.buttons[2]  = b[12].value
       ret.buttons[3]  = b[13].value
@@ -217,7 +215,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]  = b[16].value # Center Button
+      ret.buttons[0]  = b[16].value # Home Button
       ret.buttons[1]  = b[ 0].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 2].value
@@ -251,7 +249,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]  = b[10].value # Center Button
+      ret.buttons[0]  = b[10].value # Home Button
       ret.buttons[1]  = b[ 0].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 2].value
@@ -285,7 +283,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]   = b[12].value # Center Button
+      ret.buttons[0]   = b[12].value # Home Button
       ret.buttons[1]   = b[ 2].value
       ret.buttons[2]   = b[ 3].value
       ret.buttons[3]   = b[ 0].value
@@ -319,7 +317,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]   = b[12].value # Center Button
+      ret.buttons[0]   = b[12].value # Home Button
       ret.buttons[1]   = b[ 2].value
       ret.buttons[2]   = b[ 3].value
       ret.buttons[3]   = b[ 0].value
@@ -353,7 +351,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]   = b[12].value # Center Button
+      ret.buttons[0]   = b[12].value # Home Button
       ret.buttons[1]   = b[ 2].value
       ret.buttons[2]   = b[ 3].value
       ret.buttons[3]   = b[ 0].value
@@ -366,8 +364,8 @@ class enforcegamepad
       ret.buttons[10]  = b[11].value
       ret.buttons[11]  = b[ 8].value
       ret.buttons[12]  = b[ 9].value
-      ret.axes[0]      = parseInt(a[0])
-      ret.axes[1]      = parseInt(a[1])
+      ret.axes[0]      = b[16].value - b[15].value
+      ret.axes[1]      = b[14].value - b[13].value
       ret.analog[0]    = [a[0].toFixed(2), a[1].toFixed(2)]
       ret.analog[1]    = [a[2].toFixed(2), a[3].toFixed(2)]
 
@@ -387,7 +385,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]   = b[12].value # Center Button
+      ret.buttons[0]   = b[12].value # Home Button
       ret.buttons[1]   = b[ 2].value
       ret.buttons[2]   = b[ 3].value
       ret.buttons[3]   = b[ 0].value
@@ -421,7 +419,7 @@ class enforcegamepad
       a = c.axes
       b = c.buttons
 
-      ret.buttons[0]   = b[10].value # Center Button
+      ret.buttons[0]   = b[10].value # Home Button
       ret.buttons[1]   = b[ 0].value
       ret.buttons[2]   = b[ 1].value
       ret.buttons[3]   = b[ 2].value
@@ -442,8 +440,76 @@ class enforcegamepad
       return ret
 
     #============================================================================
+    # Browser  :Safari
+    # Controller :56e-2004-JC-U3613M - XInput Mode
+    #============================================================================
+    @__padsmethod.safari_56e_2004 = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+
+      ret.buttons[0]   = b[12].value # Home Button
+      ret.buttons[1]   = b[ 0].value
+      ret.buttons[2]   = b[ 1].value
+      ret.buttons[3]   = b[ 2].value
+      ret.buttons[4]   = b[ 3].value
+      ret.buttons[5]   = b[ 4].value
+      ret.buttons[6]   = b[ 5].value
+      ret.buttons[7]   = @__analogButtonProc(4, c)
+      ret.buttons[8]   = @__analogButtonProc(5, c)
+      ret.buttons[9]   = b[ 9].value
+      ret.buttons[10]  = b[ 8].value
+      ret.buttons[11]  = b[ 6].value
+      ret.buttons[12]  = b[ 7].value
+      ret.axes[0]      = b[14].value - b[13].value
+      ret.axes[1]      = b[12].value - b[11].value
+      ret.analog[0]    = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]    = [a[2].toFixed(2), a[3].toFixed(2)]
+
+      return ret
+
+    #============================================================================
+    # Browser  :Firefox
+    # Controller :56e-200e-JC-U3612M
+    #============================================================================
+    @__padsmethod.firefox_56e_200e = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+
+      ret.buttons[0]   = b[12].value # Home Button
+      ret.buttons[1]   = b[ 2].value
+      ret.buttons[2]   = b[ 3].value
+      ret.buttons[3]   = b[ 0].value
+      ret.buttons[4]   = b[ 1].value
+      ret.buttons[5]   = b[ 4].value
+      ret.buttons[6]   = b[ 5].value
+      ret.buttons[7]   = b[ 6].value
+      ret.buttons[8]   = b[ 7].value
+      ret.buttons[9]   = b[10].value
+      ret.buttons[10]  = b[11].value
+      ret.buttons[11]  = b[ 8].value
+      ret.buttons[12]  = b[ 9].value
+      ret.axes[0]      = b[16].value - b[15].value
+      ret.axes[1]      = b[14].value - b[13].value
+      ret.analog[0]    = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]    = [a[2].toFixed(2), a[3].toFixed(2)]
+
+      return ret
+
+    #============================================================================
     # Browser  :Chrome
-    # Controller :56e-200e-JC-U3912T
+    # Controller :56e-200e-JC-U3612T
     #============================================================================
     @__padsmethod.chrome_56e_200e = (c)=>
       ret = []
@@ -456,7 +522,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(10, 11, c)
 
-      ret.buttons[0]   = btn[2] # Center Button
+      ret.buttons[0]   = btn[2] # Home Button
       ret.buttons[1]   = b[ 2].value
       ret.buttons[2]   = b[ 3].value
       ret.buttons[3]   = b[ 0].value
@@ -472,15 +538,15 @@ class enforcegamepad
       ret.axes[0]      = @__crossButtonHorizontal(9, c)
       ret.axes[1]      = @__crossButtonVertical(9, c)
       ret.analog[0]    = [a[0].toFixed(2), a[1].toFixed(2)]
-      ret.analog[1]    = [a[5].toFixed(2), a[2].toFixed(2)]
+      ret.analog[1]    = [a[2].toFixed(2), a[5].toFixed(2)]
 
       return ret
 
     #============================================================================
     # Browser  :Safari
-    # Controller :56e-2004-JC-U3613M - XInput Mode
+    # Controller :56e-200e-JC-U3612T
     #============================================================================
-    @__padsmethod.safari_56e_2004 = (c)=>
+    @__padsmethod.safari_56e_200e = (c)=>
       ret = []
       ret.id = c.id
       ret.buttons = []
@@ -489,8 +555,9 @@ class enforcegamepad
 
       a = c.axes
       b = c.buttons
+      btn = @__buttonLogicalc(10, 11, c)
 
-      ret.buttons[0]   = b[12].value # Center Button
+      ret.buttons[0]   = btn[2] # Home Button
       ret.buttons[1]   = b[ 2].value
       ret.buttons[2]   = b[ 3].value
       ret.buttons[3]   = b[ 0].value
@@ -499,12 +566,12 @@ class enforcegamepad
       ret.buttons[6]   = b[ 5].value
       ret.buttons[7]   = b[ 6].value
       ret.buttons[8]   = b[ 7].value
-      ret.buttons[9]   = b[10].value
-      ret.buttons[10]  = b[11].value
+      ret.buttons[9]   = btn[0]
+      ret.buttons[10]  = btn[1]
       ret.buttons[11]  = b[ 8].value
       ret.buttons[12]  = b[ 9].value
-      ret.axes[0]      = parseInt(a[0])
-      ret.axes[1]      = parseInt(a[1])
+      ret.axes[0]      = b[15].value - b[14].value
+      ret.axes[1]      = b[13].value - b[12].value
       ret.analog[0]    = [a[0].toFixed(2), a[1].toFixed(2)]
       ret.analog[1]    = [a[2].toFixed(2), a[3].toFixed(2)]
 
@@ -525,7 +592,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(8, 9, c)
 
-      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[0]  = btn[2] # Home Button
       ret.buttons[1]  = b[ 0].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 2].value
@@ -560,7 +627,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(8, 9, c)
 
-      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[0]  = btn[2] # Home Button
       ret.buttons[1]  = b[ 0].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 2].value
@@ -595,7 +662,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(8, 9, c)
 
-      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[0]  = btn[2] # Home Button
       ret.buttons[1]  = b[ 0].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 2].value
@@ -630,7 +697,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(8, 9, c)
 
-      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[0]  = btn[2] # Home Button
       ret.buttons[1]  = b[ 2].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 3].value
@@ -665,7 +732,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(8, 9, c)
 
-      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[0]  = btn[2] # Home Button
       ret.buttons[1]  = b[ 2].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 3].value
@@ -700,7 +767,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(8, 9, c)
 
-      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[0]  = btn[2] # Home Button
       ret.buttons[1]  = b[ 2].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 3].value
@@ -735,7 +802,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(8, 9, c)
 
-      ret.buttons[0]  = btn[2] # Center Button
+      ret.buttons[0]  = btn[2] # Home Button
       ret.buttons[1]  = b[ 0].value
       ret.buttons[2]  = b[ 1].value
       ret.buttons[3]  = b[ 2].value
@@ -756,6 +823,181 @@ class enforcegamepad
       return ret
 
     #============================================================================
+    # Browser  :Safari
+    # Controller :8BitDo N30 Pro 2 (STANDARD GAMEPAD Vendor: 045e Product: 02e0)
+    #============================================================================
+    @__padsmethod.safari_45e_2e0 = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+      btn = @__buttonLogicalc(8, 9, c)
+
+      ret.buttons[0]  = btn[2] # Home Button
+      ret.buttons[1]  = b[ 0].value
+      ret.buttons[2]  = b[ 1].value
+      ret.buttons[3]  = b[ 2].value
+      ret.buttons[4]  = b[ 3].value
+      ret.buttons[5]  = b[ 4].value
+      ret.buttons[6]  = b[ 5].value
+      ret.buttons[7]  = @__analogButtonProc(4, c)
+      ret.buttons[8]  = @__analogButtonProc(5, c)
+      ret.buttons[9]  = b[ 6].value
+      ret.buttons[10] = b[ 7].value
+      ret.buttons[11] = b[ 8].value
+      ret.buttons[12] = b[ 9].value
+      ret.axes[0]     = b[13].value - b[12].value
+      ret.axes[1]     = b[11].value - b[10].value
+      ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]   = [a[2].toFixed(2), a[3].toFixed(2)]
+
+      return ret
+
+    #============================================================================
+    # Browser  :Chrome
+    # Controller : 2dc8-2865-8BitDo N30 Pro 2(Direct Input)
+    #============================================================================
+    @__padsmethod.chrome_2dc8_2865 = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+      btn = @__buttonLogicalc(10, 11, c)
+
+      ret.buttons[0]  = btn[2] # Home Button
+      ret.buttons[1]  = b[ 1].value
+      ret.buttons[2]  = b[ 0].value
+      ret.buttons[3]  = b[ 4].value
+      ret.buttons[4]  = b[ 3].value
+      ret.buttons[5]  = b[ 6].value
+      ret.buttons[6]  = b[ 7].value
+      ret.buttons[7]  = b[ 8].value
+      ret.buttons[8]  = b[ 9].value
+      ret.buttons[9]  = btn[0]
+      ret.buttons[10] = btn[1]
+      ret.buttons[11] = b[13].value
+      ret.buttons[12] = b[14].value
+      ret.axes[0]     = @__crossButtonHorizontal(9, c)
+      ret.axes[1]     = @__crossButtonVertical(9, c)
+      ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]   = [a[2].toFixed(2), a[5].toFixed(2)]
+
+      return ret
+
+    #============================================================================
+    # Browser  :Safari
+    # Controller : 2dc8-2865-8BitDo N30 Pro 2(Direct Input)
+    #============================================================================
+    @__padsmethod.safari_2dc8_2865 = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+      btn = @__buttonLogicalc(10, 11, c)
+
+      ret.buttons[0]  = btn[2] # Home Button
+      ret.buttons[1]  = b[ 1].value
+      ret.buttons[2]  = b[ 0].value
+      ret.buttons[3]  = b[ 4].value
+      ret.buttons[4]  = b[ 3].value
+      ret.buttons[5]  = b[ 6].value
+      ret.buttons[6]  = b[ 7].value
+      ret.buttons[7]  = b[ 8].value
+      ret.buttons[8]  = b[ 9].value
+      ret.buttons[9]  = btn[0]
+      ret.buttons[10] = btn[1]
+      ret.buttons[11] = b[13].value
+      ret.buttons[12] = b[14].value
+      ret.axes[0]     = b[19].value - b[18].value
+      ret.axes[1]     = b[17].value - b[16].value
+      ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]   = [a[2].toFixed(2), a[3].toFixed(2)]
+
+      return ret
+
+    #============================================================================
+    # Browser  :Chrome
+    # Controller :8BitDo N30 Pro 2 (STANDARD GAMEPAD Vendor: 045e Product: 02e0)
+    #============================================================================
+    @__padsmethod.chrome_45e_2e0 = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+      btn = @__buttonLogicalc(8, 9, c)
+
+      ret.buttons[0]  = btn[2] # Home Button
+      ret.buttons[1]  = b[ 0].value
+      ret.buttons[2]  = b[ 1].value
+      ret.buttons[3]  = b[ 2].value
+      ret.buttons[4]  = b[ 3].value
+      ret.buttons[5]  = b[ 4].value
+      ret.buttons[6]  = b[ 5].value
+      ret.buttons[7]  = b[ 6].value
+      ret.buttons[8]  = b[ 7].value
+      ret.buttons[9]  = btn[0]
+      ret.buttons[10] = btn[1]
+      ret.buttons[11] = b[10].value
+      ret.buttons[12] = b[11].value
+      ret.axes[0]     = b[15].value - b[14].value
+      ret.axes[1]     = b[13].value - b[12].value
+      ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]   = [a[2].toFixed(2), a[3].toFixed(2)]
+
+      return ret
+
+    #============================================================================
+    # Browser  :Safari
+    # Controller :8BitDo N30 Pro 2 (STANDARD GAMEPAD Vendor: 045e Product: 02e0)
+    #============================================================================
+    @__padsmethod.safari_45e_2e0 = (c)=>
+      ret = []
+      ret.id = c.id
+      ret.buttons = []
+      ret.axes = [[], []]
+      ret.analog = [[], []]
+
+      a = c.axes
+      b = c.buttons
+      btn = @__buttonLogicalc(8, 9, c)
+
+      ret.buttons[0]  = btn[2] # Home Button
+      ret.buttons[1]  = b[ 0].value
+      ret.buttons[2]  = b[ 1].value
+      ret.buttons[3]  = b[ 2].value
+      ret.buttons[4]  = b[ 3].value
+      ret.buttons[5]  = b[ 4].value
+      ret.buttons[6]  = b[ 5].value
+      ret.buttons[7]  = @__analogButtonProc(4, c)
+      ret.buttons[8]  = @__analogButtonProc(5, c)
+      ret.buttons[9]  = b[ 6].value
+      ret.buttons[10] = b[ 7].value
+      ret.buttons[11] = b[ 8].value
+      ret.buttons[12] = b[ 9].value
+      ret.axes[0]     = b[13].value - b[12].value
+      ret.axes[1]     = b[11].value - b[10].value
+      ret.analog[0]   = [a[0].toFixed(2), a[1].toFixed(2)]
+      ret.analog[1]   = [a[2].toFixed(2), a[3].toFixed(2)]
+
+      return ret
+
+    #============================================================================
     # Browser  :All
     # Controller :Generic
     #============================================================================
@@ -770,7 +1012,7 @@ class enforcegamepad
       b = c.buttons
       btn = @__buttonLogicalc(6, 7, c)
 
-      ret.buttons[0] = btn[2] # Center Button
+      ret.buttons[0] = btn[2] # Home Button
       ret.buttons[1]  = b[ 1].value
       ret.buttons[2]  = b[ 0].value
       ret.buttons[3]  = b[ 2].value
